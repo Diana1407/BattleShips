@@ -1,9 +1,16 @@
-import { NavigationProp, useNavigation } from "@react-navigation/native"
-import { useAuth } from "../../hooks/authContext"
-import { Text } from "react-native"
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const TableScreen = () => {
-    return <Text>Game</Text>
-}
+  const navigation = useNavigation();
+  console.log(navigation);
+  return (
+    <SafeAreaView>
+      <Text>Game</Text>
+    </SafeAreaView>
+  );
+};
 
-export default TableScreen
+export default TableScreen;
