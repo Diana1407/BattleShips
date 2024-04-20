@@ -6,6 +6,7 @@ interface IAuthContext {
   token: string;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
+  logout : () => Promise<void>;
   isLoading: boolean;
 }
 
@@ -13,6 +14,7 @@ const AuthContext = createContext<IAuthContext>({
   token: "",
   login: async () => {},
   register: async () => {},
+  logout : async () => {},
   isLoading: false,
 });
 
@@ -56,12 +58,25 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const handleLogout = async () => {
+  try {
+    await AsyncStorage.removeItem("token");
+    setToken(null);
+    //await AsyncStorage.removeItem("userIcon");
+    console.log("Logout successful");
+  } 
+  catch (error) {
+    console.log("error logging out", error);
+  }
+}
+
   return (
     <AuthContext.Provider
       value={{
         token,
         login: handleLogin,
         register: handleRegister,
+        logout : handleLogout,
         isLoading,
       }}
     >

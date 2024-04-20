@@ -1,4 +1,5 @@
 //import { CellId } from "./hooks/gameContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const baseUrl = 'http://163.172.177.98:8081';
 console.log(baseUrl)
@@ -69,7 +70,8 @@ export const createGame = async (token: string) => {
     return data
 }
 
-export const loadGame = async (token: string, gameId: number) => {
+export const loadGame = async (token: string, gameId: string) => {
+    
     const result = await fetch(`${baseUrl}/game/${gameId}`, {
         method: 'GET',
         headers: {
@@ -77,25 +79,47 @@ export const loadGame = async (token: string, gameId: number) => {
             'Authorization': `Bearer ${token}`
         }
     })
-
+   
     const data = await result.json();
-
     return data
 }
 
-// export const sendMove = async (token: string, gameId: number, cell: CellId) => {
-//     const result = await fetch(`${baseUrl}/game/move/${gameId}`, {
-//         method: 'POST',
-//         headers: {
-//             ...baseHeaders,
-//             'Authorization': `Bearer ${token}`
-//         },
-//         body: JSON.stringify({
-//             cell
-//         })
-//     })
 
-//     const data = await result.json();
+export const fetchUserDetails = async (): Promise<any> => {
+    const token = await AsyncStorage.getItem('token');
+    
+    if (!token) {
+      throw new Error('Authentication token not found');
+    }
+  
+    const response = await fetch(`${baseUrl}/user/details/me`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        }
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        throw new Error('Failed to fetch user details');
+      }
+  };
 
-//     return data
-// }
+
+  export const joinGame = async (token: string, gameId : string) => {
+    console.log("Joining game", gameId)
+    const result = await fetch(`${baseUrl}/game/join/${gameId}`, {
+        method: 'POST',
+        headers: {
+            ...baseHeaders,
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    
+    const data = await result.json();
+    console.log(data)
+    return data
+}
