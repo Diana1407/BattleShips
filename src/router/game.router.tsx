@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { GameRouteNames } from "./route-names";
+import { GameRouteNames, UserRouteNames } from "./route-names";
 import { Text } from "react-native";
 import LobbyScreen from "../screens/game/Lobby.screen";
 import TableScreen from "../screens/game/Table.screen";
+import ProfileScreen from "../screens/user/Profile.screen";
 
 const GameStack = createNativeStackNavigator();
 
@@ -22,6 +23,15 @@ const gameRoutes = (
         headerTitle: (props) => <Text {...props}>Game</Text>,
       }}
     />
+
+    <GameStack.Screen
+      name={UserRouteNames.PROFILE}
+      component={ProfileScreen}
+      options={{
+        headerTitle: (props) => <Text {...props}>Profile</Text>,
+      }}>
+        
+      </GameStack.Screen>
   </GameStack.Navigator>
 );
 

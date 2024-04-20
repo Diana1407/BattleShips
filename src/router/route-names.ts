@@ -7,3 +7,7 @@ export const enum GameRouteNames {
     TABLE = 'TABLE',
     LOBBY = 'LOBBY'
 }
+
+export const enum UserRouteNames {
+    PROFILE = 'PROFILE'
+}

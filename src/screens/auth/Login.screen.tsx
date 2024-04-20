@@ -8,6 +8,7 @@ const LoginScreen = () => {
     const handleGoToRegister = () => {
         navigation.navigate(AuthRouteNames.REGISTER)
     }
+
     const auth = useAuth()
     return <Login onSubmit={auth.login} goToRegister={handleGoToRegister}/> 
 }
