@@ -41,7 +41,7 @@ export const register = async (email: string, password: string) => {
 
     console.log(data);
 
-    return data.accessToken
+    return data.id
 };
 
 export const listGames = async (token: string) => {

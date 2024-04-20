@@ -8,14 +8,13 @@ import ProfileScreen from "../screens/user/Profile.screen";
 const GameStack = createNativeStackNavigator();
 
 const gameRoutes = (
-  <GameStack.Navigator>
-    <GameStack.Screen
-      name={GameRouteNames.LOBBY}
-      component={LobbyScreen}
-      options={{
-        header: () => null,
-      }}
-    />
+  <GameStack.Navigator
+    initialRouteName="Lobby"
+    screenOptions={{
+      headerStyle: { backgroundColor: "#B3D8FA" },
+    }}
+  >
+    <GameStack.Screen name={GameRouteNames.LOBBY} component={LobbyScreen} />
     <GameStack.Screen
       name={GameRouteNames.TABLE}
       component={TableScreen}
@@ -29,9 +28,8 @@ const gameRoutes = (
       component={ProfileScreen}
       options={{
         headerTitle: (props) => <Text {...props}>Profile</Text>,
-      }}>
-        
-      </GameStack.Screen>
+      }}
+    ></GameStack.Screen>
   </GameStack.Navigator>
 );
 
