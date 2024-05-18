@@ -5,6 +5,7 @@ import { useAuth } from "../hooks/authContext";
 import gameRoutes from "./game.router";
 import { ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import MainNavigator from "./MainNavigator";
 
 const Router: React.FC = () => {
   const auth = useAuth();
@@ -19,7 +20,7 @@ const Router: React.FC = () => {
 
   return (
     <NavigationContainer>
-      {auth.token ? gameRoutes : authRoutes}
+      {auth.token ? <MainNavigator /> : authRoutes}
     </NavigationContainer>
   );
 };
