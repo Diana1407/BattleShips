@@ -16,18 +16,23 @@ const TableScreen = () => {
     };
 
     fetchData();
-  }, [])
+  }, []);
 
   return (
     <SafeAreaView>
       <Text>Game Details:</Text>
       {gameCtx.game ? (
         <>
-          {gameCtx.game.player1 && (<Text>Player 1: {gameCtx.game.player1.email}</Text>)}
-          {gameCtx.game.player2 ? (<Text>Player 2: {gameCtx.game.player2.email}</Text>) : <Text>Waiting for player 2...</Text>}
-         
+          {gameCtx.game.player1 && (
+            <Text>Player 1: {gameCtx.game.player1.email}</Text>
+          )}
+          {gameCtx.game.player2 ? (
+            <Text>Player 2: {gameCtx.game.player2.email}</Text>
+          ) : (
+            <Text>Waiting for player 2...</Text>
+          )}
+
           <Text>Status: {gameCtx.game.status}</Text>
-         
         </>
       ) : (
         <Text>Loading game details...</Text>
@@ -40,4 +45,4 @@ export default () => (
   <ContextProvider>
     <TableScreen />
   </ContextProvider>
- );
+);

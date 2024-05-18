@@ -1,14 +1,12 @@
-
 import { StyleSheet, Text, View } from "react-native";
-import {SafeAreaView} from 'react-native-safe-area-context';
-import Router from './src/router';
-import 'react-native-gesture-handler';
+import Router from "./src/router";
+import "react-native-gesture-handler";
 import { AuthContextProvider } from "./src/hooks/authContext";
 
 export default function App() {
   return (
-    <AuthContextProvider>  
-      <Router/>
+    <AuthContextProvider>
+      <Router />
     </AuthContextProvider>
   );
 }
@@ -16,7 +14,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#263973",
     alignItems: "center",
     justifyContent: "center",
   },

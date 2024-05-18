@@ -1,24 +1,37 @@
 import React, { useState } from "react";
-import styled from "styled-components/native";
-import { Text } from "react-native";
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+} from "react-native";
 
-const Container = styled.View`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-`;
-
-const Input = styled.TextInput`
-  width: 100%;
-  height: 30px;
-  border: 1px solid;
-  margin-bottom: 10px;
-  padding: 8px;
-`;
-
-const Button = styled.TouchableOpacity``;
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    padding: 20,
+  },
+  input: {
+    height: 40,
+    width: "100%",
+    borderColor: "gray",
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+  button: {
+    backgroundColor: "blue",
+    padding: 10,
+    width: "100%",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+  },
+});
 
 export interface ILogin {
   onSubmit: (email: string, password: string) => void;
@@ -32,16 +45,28 @@ const Login: React.FC<ILogin> = ({ onSubmit, goToRegister }) => {
   const handleSubmit = () => onSubmit(email, password);
 
   return (
-    <Container>
-      <Input keyboardType="email-address" onChangeText={setEmail} />
-      <Input secureTextEntry onChangeText={setPassword} />
-      <Button onPress={handleSubmit}>
-        <Text>Submit</Text>
-      </Button>
-      <Button onPress={goToRegister}>
-        <Text>Register</Text>
-      </Button>
-    </Container>
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        keyboardType="email-address"
+        onChangeText={setEmail}
+        placeholder="Email"
+        autoCapitalize="none"
+      />
+      <TextInput
+        style={styles.input}
+        secureTextEntry={true}
+        onChangeText={setPassword}
+        placeholder="Password"
+        autoCapitalize="none"
+      />
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.buttonText}>Submit</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={goToRegister}>
+        <Text style={styles.buttonText}>Register</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
